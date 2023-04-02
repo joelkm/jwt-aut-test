@@ -13,5 +13,8 @@ module.exports = {
             email: user.email,
             password: user.password
         });
+    },
+    getUserBy: async (field, value) => {
+        return await users.where(field, "==", value);
     }
 }
