@@ -1,6 +1,3 @@
-const Logger = require("./environment-logger");
-const formatResponse = require("../common/format-response");
-
 const handleError = (err, req, res) => {
   let statusCode = 400;
   if (err.apiError) {
