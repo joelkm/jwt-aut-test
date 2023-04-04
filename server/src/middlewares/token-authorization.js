@@ -8,7 +8,7 @@ module.exports = {
         const token = authHeader && authHeader.split(' ')[1];
 
         jwt.verify(token, process.env.JWT_SECRET, (err) => {
-            if(err)     res.sendFile(path.join(__dirname, "..", "..", "..", "client", "public", "redirect.html"));
+            if(err) res.sendFile(path.join(__dirname, "..", "..", "..", "client", "public", "redirect.html"));
             next();
         })
     }

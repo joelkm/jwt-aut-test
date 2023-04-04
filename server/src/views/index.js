@@ -8,7 +8,6 @@ const publicPath = path.join(__dirname, "..", "..", "..", "client", "public");
 router.use(express.static(publicPath))
 
 router.get("/", authorizeUser ,(req, res) => {
-
     res.sendFile(path.join(publicPath, "app.html"));
 });
 
@@ -16,7 +15,7 @@ router.get("/login", (req, res) => {
     res.sendFile(path.join(publicPath, "log-in.html"));
 });
 
-router.get("/sign-up", (req, res) => {
+router.get("/signup", (req, res) => {
     res.sendFile(path.join(publicPath, "sign-up.html"));
 });
 
