@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const handleError = require('../middlewares/error-handler');
 const { NotFoundError } = require('./app-error');
