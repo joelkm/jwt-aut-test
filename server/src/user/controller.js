@@ -1,12 +1,11 @@
-const bcrypt = require('bcrypt');
-
 module.exports = {
     signUp: async (req, res, next) => {
         try {
-            const hashedPassword = await bcrypt.hash(req.body.password, 10);
-            const user = { name: req.body.name, password: hashedPassword }
+            const user = req.body;
             user = await service.register(user);
-            res.status(201)
+            res.status(201).json({
+                user: user
+            })
         } catch (error) {
             next(error)
         }
@@ -19,7 +18,7 @@ module.exports = {
                 token: token
             })
         } catch (error) {
-            next(error)
+            next(error);
         }
     },
     resetPassword: async (req, res, next) => {

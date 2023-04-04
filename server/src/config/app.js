@@ -12,8 +12,7 @@ const corsOptions = {
 const app = express();
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(express.urlencoded({extended: false}));
 app.use(cors(corsOptions));
 
 app.use("/", require("../views"));
