@@ -1,7 +1,9 @@
+const service = require('./service')
+
 module.exports = {
     signUp: async (req, res, next) => {
         try {
-            const user = req.body;
+            let user = req.body;
             user = await service.register(user);
             res.status(201).json({
                 user: user

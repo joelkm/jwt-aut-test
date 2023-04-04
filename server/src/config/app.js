@@ -19,7 +19,7 @@ app.use("/", require("../views"));
 app.use("/user", require("../user"));
 
 app.use("*", (req, res, next) => {
-  next(new NotFoundError(`Could not handle ${req.method} request in '${req.baseUrl}'`));
+  next(new NotFoundError(`Could not handle ${req.method} request in '${req.protocol + '://' + req.get('host') + req.originalUrl}'`));
 });
 app.use((err, req, res, next) => {
   handleError(err, req, res);
