@@ -8,8 +8,8 @@ const publicPath = path.join(__dirname, "..", "..", "..", "client", "public");
 router.use(express.static(publicPath))
 
 router.get("/", authorizeUser ,(req, res) => {
-    console.log(('qraro'));
-    res.sendFile(path.join(publicPath, "index.html"));
+
+    res.sendFile(path.join(publicPath, "app.html"));
 });
 
 router.get("/login", (req, res) => {
