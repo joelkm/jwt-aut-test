@@ -39,10 +39,10 @@ switch (pathname) {
         signup.addEventListener('submit', async (e) => {
             e.preventDefault();
             let inputs = document.querySelectorAll('input')
-            if(input[0].value == '' || input [1].value == '') {
+            if(inputs[0].value == '' || inputs[1].value == '') {
                 document.getElementById('signup-error').style.display = 'block'
-            }
-            const response = await fetch('https://allwell-test-app.onrender.com/user/', {
+            } else {
+                const response = await fetch('https://allwell-test-app.onrender.com/user/', {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",
@@ -57,6 +57,7 @@ switch (pathname) {
             const data = await response.json();
             signup.style.display = 'none';
             document.getElementById('signup-success').style.display ='flex'
+            }
         });
         break;
     case "/password-reset":
