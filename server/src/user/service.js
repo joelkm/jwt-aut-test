@@ -25,9 +25,11 @@ module.exports = {
         }
         await model.updateLoginTimestamp()
         stored = await model.getUserBy("email", user.email);
-        
-        return jwt.sign({email: stored.email, password: stored.password, loginTimestamp: stored.loginTimestamp},
+        const token = jwt.sign({email: stored.email, password: stored.password, loginTimestamp: stored.loginTimestamp},
             process.env.JWT_SECRET, {expiresIn: '1m'});
+
+        const results = { token: token, id: stored._id }
+        return results;
     },
     sendResetLink: async (email) => {
         const stored = await model.getUserBy("email", email)

@@ -36,7 +36,7 @@ module.exports = {
         }
     },
     updateLoginTimestamp: async (email) => {
-        await users.findOneAndUpdate({ email: email}, { loginTimestamp: Date.now()});
+        return await users.findOneAndUpdate({ email: email}, { loginTimestamp: Date.now()});
     },
     updatePassword: async (id, password) => {
         return await users.findOneAndUpdate({_id: id}, {password: password});

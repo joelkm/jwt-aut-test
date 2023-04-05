@@ -115,3 +115,9 @@ height: 65vh;
     flex-direction: column;
 }
 
+#changepw-success {
+    display: none;
+    padding: 30px;
+    flex-direction: column;
+}
+

@@ -38,6 +38,8 @@
         .container {
             border: 2px solid #F2F2F2;
             border-radius: 9px;
+            display: flex;
+            flex-direction: column;
         }
         h1 {
             color: #006EFF;
@@ -58,6 +60,7 @@
             border: none;
             border-radius: 999px;
             padding: 20px 48px;
+            text-decoration: none;
         }
         .button:hover{
             cursor: pointer;
@@ -107,17 +110,53 @@
         .form-row > img {
         height: 65vh;
         }
+
+        #signup-success {
+            display: none;
+            padding: 30px;
+            flex-direction: column;
+        }
+        .error-message {
+            color: red;
+            display: none;
+        }
+
+        #resetpw-success {
+            display: none;
+            padding: 30px;
+            flex-direction: column;
+        }
+
+        #changepw-success {
+            display: none;
+            padding: 30px;
+            flex-direction: column;
+        }
+        #app-logout {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-left: 45%;
+            margin-top: 100px;
+        }
     </style>
 </head>
 <body>
     <nav><img src="assets/Screenshot 2023-04-03 104052.png" alt=""></nav>
-    <div class="main">
+    <div class="main" id="app-screen">
         <h1>This is your beautiful test app!</h1>
         <div class="container app">
             <h2>This app let's you change the color of the button below from green to red each time you click it! isn't that amazing?</h2>
             <button id="app-button" class="button action-primary">Change the color of this button now</button>
         </div>
-        <button class="button action-primary logout">Log out</button>
+        <button id="logout-button" class="button action-primary logout">Log out</button>
+    </div>
+    <div id="app-logout">
+        <h1>You have logged out from this beautiful app</h1>
+        <h2>You can log in again</h2>
+        <a href="http://localhost:8000/login" class="button action-primary">Go to log in</a>
     </div>
     <script>
         const pathname = window.location.pathname;
@@ -125,6 +164,10 @@
 
         console.log(baseURL);
         console.log(pathname);
+
+        const params =pathname.split('/');
+        const id = params[2];
+        const token = params[3];
 
         const appButton = document.getElementById('app-button');
         const logoutButton = document.getElementById('logout-button')
@@ -137,6 +180,21 @@
                 element.target.classList.add("action-primary");
             }
         });
+        logoutButton.addEventListener('click', async () => {
+            const response = await fetch(`http://localhost:8000/user/logout/${id}`, {
+                    method: "PUT",
+                    mode: "cors",
+                    cache: "no-cache",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+            const data = await response.json();
+            if(data.status = true) {
+                document.getElementById('app-logout').style.display = 'flex';
+                document.getElementById('app-screen').style.display = 'none'
+            }
+        })
     </script>
 </body>
 </html>

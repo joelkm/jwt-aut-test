@@ -28,8 +28,9 @@ switch (pathname) {
                 document.getElementById('login-error').style.display = 'block';
             } else {
                 const token = data.token;
+                const id = data.id;
                 await window.sessionStorage.setItem("jwt", token);
-                window.location.href = `http://localhost:8000/app/${token}`
+                window.location.href = `http://localhost:8000/app/${id}/${token}`
             }
         });
         break;

@@ -11,7 +11,7 @@ router.get("/" ,(req, res) => {
     res.sendFile(path.join(publicPath, "redirect.html"));
 });
 
-router.get("/app/:token", authorizeUser ,(req, res) => {
+router.get("/app/:id/:token", authorizeUser ,(req, res) => {
     res.sendFile(path.join(publicPath, "app.html"));
 });
 

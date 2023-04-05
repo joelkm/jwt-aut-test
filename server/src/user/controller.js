@@ -15,9 +15,10 @@ module.exports = {
     login: async (req, res, next) => {
         try {
             const user = req.body;
-            const token = await service.giveAccess(user);
+            const results = await service.giveAccess(user);
             res.status(301).json({
-                token: token,
+                token: results.token,
+                id: results.id
             })
         } catch (error) {
             next(error);

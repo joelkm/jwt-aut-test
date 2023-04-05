@@ -9,6 +9,6 @@ router.post("/password-reset", controller.resetPasswordEmail);
 
 router.put("/password-reset/:id/:token", controller.changePassword);
 
-router.post("/logout/:id");
+router.put("/logout/:id", controller.logout);
 
 module.exports = router;
