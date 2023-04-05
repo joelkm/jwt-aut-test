@@ -55,7 +55,7 @@ switch (pathname) {
         resetpw.addEventListener('submit', async (e) => {
             e.preventDefault();
             let inputs = document.querySelectorAll('input')
-            const response = await fetch('http://localhost:8000/user/', {
+            const response = await fetch('http://localhost:8000/user/password-reset', {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",

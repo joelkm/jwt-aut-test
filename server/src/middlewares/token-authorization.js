@@ -1,6 +1,6 @@
 const { AuthorizationError } = require('../config/app-error')
 const jwt = require('jsonwebtoken');
-const path = require('path')
+const model = require('../user/model');
 
 module.exports = {
     authorizeUser: (req, res, next) => {
@@ -9,6 +9,21 @@ module.exports = {
         jwt.verify(token, process.env.JWT_SECRET, (err) => {
             if(err) {
                 next(new AuthorizationError('Invalid auhtentication token, please login'))
+            }
+            next();
+        })
+    },
+    validateLink: async (req, res, next) => {
+        const id = req.params.id;
+        const token = req.params.token;
+
+        const stored = await model.getUserBy("_id", id);
+        console.log(stored);
+        const userPassword = stored[0].password;
+
+        jwt.verify(token, process.env.JWT_SECRET + userPassword, (err) => {
+            if(err) {
+                next(new AuthorizationError('Invalid reset password link'))
             }
             next();
         })

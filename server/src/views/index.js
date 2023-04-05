@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const path = require('path')
-const { authorizeUser } = require('../middlewares/token-authorization');
+const { authorizeUser, validateLink } = require('../middlewares/token-authorization');
 
 const publicPath = path.join(__dirname, "..", "..", "..", "client", "public");
 
@@ -11,7 +11,7 @@ router.get("/" ,(req, res) => {
     res.sendFile(path.join(publicPath, "redirect.html"));
 });
 
-router.get("/app/:token", /*authorizeUser ,*/(req, res) => {
+router.get("/app/:token", authorizeUser ,(req, res) => {
     res.sendFile(path.join(publicPath, "app.html"));
 });
 
@@ -28,7 +28,7 @@ router.get("/password-reset", (req, res) => {
     res.sendFile(path.join(publicPath, "forgot-password.html"));
 });
 
-router.get("/password-reset/:id/:token", (req, res) => {
+router.get("/password-reset/:id/:token", validateLink, (req, res) => {
     res.sendFile(path.join(publicPath, "change-password.html"));
 });
 

@@ -23,7 +23,26 @@ module.exports = {
             next(error);
         }
     },
-    resetPassword: async (req, res, next) => {
-        
+    resetPasswordEmail: async (req, res, next) => {
+        try {
+            const email = req.body.email;
+            const result = service.sendResetLink(email)
+            res.status(200).json({
+                status: result
+            })
+        } catch (error) {
+            next(error)
+        }
+    },
+    changePassword: async (req, res, next) => {
+        try {
+            const email = req.body.email;
+            const result = service.sendResetLink(email)
+            res.status(200).json({
+                status: result
+            })
+        } catch (error) {
+            next(error)
+        }
     }
 }
