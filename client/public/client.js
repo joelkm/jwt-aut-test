@@ -72,6 +72,14 @@ switch (pathname) {
                 })
             });
             const data = await response.json();
+            console.log(data);
+            if(data.error) {
+                document.getElementById('sendlink-error').style.display = 'block';
+            } else {
+                resetpw.style.display = 'none';
+                document.getElementById('resetpw-success').style.display ='flex'
+                document.getElementById('reset-link').setAttribute('href', data.link)
+            }
         });
         break;
     default:

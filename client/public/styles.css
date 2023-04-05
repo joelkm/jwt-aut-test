@@ -102,8 +102,16 @@ height: 65vh;
 #signup-success {
     display: none;
     padding: 30px;
+    flex-direction: column;
 }
 .error-message {
     color: red;
     display: none;
 }
+
+#resetpw-success {
+    display: none;
+    padding: 30px;
+    flex-direction: column;
+}
+

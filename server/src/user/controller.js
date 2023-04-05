@@ -26,9 +26,9 @@ module.exports = {
     resetPasswordEmail: async (req, res, next) => {
         try {
             const email = req.body.email;
-            const result = service.sendResetLink(email)
+            const result = await service.sendResetLink(email)
             res.status(200).json({
-                status: result
+                link: result
             })
         } catch (error) {
             next(error)
@@ -40,7 +40,7 @@ module.exports = {
                 id: req.params.id,
                 password: req.body.password
             }
-            let result = service.changePassword(user)
+            let result = await service.changePassword(user)
             res.status(200).json({
                 status: result
             })
@@ -51,7 +51,7 @@ module.exports = {
     logout: async (req, res, next) => {
         try {
             const id = req.params.id
-            let result = service.invalidateAccess(id)
+            let result = await service.invalidateAccess(id)
             res.status(200).json({
                 status: result
             })

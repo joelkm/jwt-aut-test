@@ -20,26 +20,25 @@ module.exports = {
     },
     giveAccess: async (user) => {
         let stored = await model.getUserBy("email", user.email);
-        if (!await bcrypt.compare(user.password, stored[0].password)) {
+        if (!await bcrypt.compare(user.password, stored.password)) {
             throw new BadRequestError("Incorrect email or password");
         }
         await model.updateLoginTimestamp()
         stored = await model.getUserBy("email", user.email);
-        user = stored[0];
-        return jwt.sign({email: user.email, password: user.password, loginTimestamp: user.loginTimestamp},
+        
+        return jwt.sign({email: stored.email, password: stored.password, loginTimestamp: stored.loginTimestamp},
             process.env.JWT_SECRET, {expiresIn: '1m'});
     },
     sendResetLink: async (email) => {
         const stored = await model.getUserBy("email", email)
-        const user = stored[0];
-        if(!user) {
-            throw new BadRequestError('Email not registered')
-        }
+        if(!stored) {
+            throw new BadRequestError('Email not registered');
+        }        
 
-        const token = jwt.sign({email: email, id: user._id}, process.env.JWT_SECRET + user.password, {expiresIn: '15m'});
+        const token = jwt.sign({email: email, id: stored._id}, process.env.JWT_SECRET + stored.password, {expiresIn: '15m'});
 
-        const resetLink = `http://localhost:8000/password-reset/${user._id}/${token}`
-
+        const resetLink = `http://localhost:8000/password-reset/${stored._id}/${token}`
+        /*
         const transporter = nodemailer.createTransport({
             host: "smtp-mail.outlook.com", // hostname
             secureConnection: false, // TLS requires secureConnection to be false
@@ -63,20 +62,20 @@ module.exports = {
         ${resetLink}`
         };
           
-        transporter.sendMail(mailOptions)
-        console.log('sent');
-        return true
+        transporter.sendMail(mailOptions)*/
+        console.log('Email sent');
+        return resetLink
     },
     changePassword: async (user) => {
         user.password = await bcrypt.hash(user.password, 10);
-        if(!await model.updatePassword(id, user.password)) {
+        if(!await model.updatePassword(user.id, user.password)) {
             throw new BadRequestError("Password was not changed")
         }
         return true
     },
     invalidateAccess: async (id) => {
         const stored = await getUserBy("id", id)
-        const email = stored[0].email
+        const email = stored.email
         if(!await model.updateLoginTimestamp(email)) {
             throw new BadRequestError("User could not log out");
         }

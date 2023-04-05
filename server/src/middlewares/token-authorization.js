@@ -8,7 +8,7 @@ module.exports = {
         const email = req.body.email;
         
         const stored = await model.getUserBy("email", email);
-        const loginTimestamp = stored[0].loginTimestamp;
+        const loginTimestamp = stored.loginTimestamp;
 
         jwt.verify(token, process.env.JWT_SECRET, (err) => {
             if(err) {
@@ -21,8 +21,8 @@ module.exports = {
         const id = req.params.id;
         const token = req.params.token;
 
-        const stored = await model.getUserBy("_id", id);
-        const userPassword = stored[0].password;
+        const stored = await model.getUserBy("id", id);
+        const userPassword = stored.password;
 
         jwt.verify(token, process.env.JWT_SECRET + userPassword, (err) => {
             if(err) {
