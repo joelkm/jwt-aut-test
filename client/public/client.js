@@ -43,20 +43,24 @@ switch (pathname) {
                 document.getElementById('signup-error').style.display = 'block'
             } else {
                 const response = await fetch('https://allwell-test-app.onrender.com/user/', {
-                method: "POST",
-                mode: "cors",
-                cache: "no-cache",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: inputs[0].value,
-                    password: inputs[1].value
-                })
+                    method: "POST",
+                    mode: "cors",
+                    cache: "no-cache",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: inputs[0].value,
+                        password: inputs[1].value
+                    })
                 })
                 const data = await response.json();
+                if(data.error) {
+                    document.getElementById('mail-exists').style.display = 'block';
+                } else {
                 signup.style.display = 'none';
                 document.getElementById('signup-success').style.display ='flex'
+                }
             }
         });
         break;
