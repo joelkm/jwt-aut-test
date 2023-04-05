@@ -58,8 +58,8 @@ switch (pathname) {
                 if(data.error) {
                     document.getElementById('mail-exists').style.display = 'block';
                 } else {
-                signup.style.display = 'none';
-                document.getElementById('signup-success').style.display ='flex'
+                    signup.style.display = 'none';
+                    document.getElementById('signup-success').style.display ='flex'
                 }
             }
         });
