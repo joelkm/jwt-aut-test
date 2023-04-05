@@ -10,7 +10,7 @@ switch (pathname) {
         login.addEventListener('submit', async (e) => {
             e.preventDefault();
             let inputs = document.querySelectorAll('input')
-            let response = await fetch('http://localhost:8000/user/login', {
+            let response = await fetch('http://allwell-test-app.onrender.com/user/login', {
                 method: "PUT",
                 mode: "cors",
                 cache: "no-cache",
@@ -30,7 +30,7 @@ switch (pathname) {
                 const token = data.token;
                 const id = data.id;
                 await window.sessionStorage.setItem("jwt", token);
-                window.location.href = `http://localhost:8000/app/${id}/${token}`
+                window.location.href = `http://allwell-test-app.onrender.com/app/${id}/${token}`
             }
         });
         break;
@@ -39,7 +39,7 @@ switch (pathname) {
         signup.addEventListener('submit', async (e) => {
             e.preventDefault();
             let inputs = document.querySelectorAll('input')
-            const response = await fetch('http://localhost:8000/user/', {
+            const response = await fetch('http://allwell-test-app.onrender.com/user/', {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",
@@ -61,7 +61,7 @@ switch (pathname) {
         resetpw.addEventListener('submit', async (e) => {
             e.preventDefault();
             let inputs = document.querySelectorAll('input')
-            const response = await fetch('http://localhost:8000/user/password-reset', {
+            const response = await fetch('http://allwell-test-app.onrender.com/user/password-reset', {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",

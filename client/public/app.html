@@ -156,7 +156,7 @@
     <div id="app-logout">
         <h1>You have logged out from this beautiful app</h1>
         <h2>You can log in again</h2>
-        <a href="http://localhost:8000/login" class="button action-primary">Go to log in</a>
+        <a href="http://allwell-test-app.onrender.com/login" class="button action-primary">Go to log in</a>
     </div>
     <script>
         const pathname = window.location.pathname;
@@ -181,7 +181,7 @@
             }
         });
         logoutButton.addEventListener('click', async () => {
-            const response = await fetch(`http://localhost:8000/user/logout/${id}`, {
+            const response = await fetch(`http://allwell-test-app.onrender.com/user/logout/${id}`, {
                     method: "PUT",
                     mode: "cors",
                     cache: "no-cache",
