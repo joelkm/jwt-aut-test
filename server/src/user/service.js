@@ -55,8 +55,8 @@ module.exports = {
           });
           
         const mailOptions = {
-        from: '',
-        to: user.email,
+        from: process.env.OUTLOOK_USER,
+        to: email,
         subject: 'Password reset link',
         text: `Hey, it's me Joel
         I see you sent a request to reset your password on my app.
