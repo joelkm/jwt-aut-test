@@ -39,6 +39,9 @@ switch (pathname) {
         signup.addEventListener('submit', async (e) => {
             e.preventDefault();
             let inputs = document.querySelectorAll('input')
+            if(input[0].value == '' || input [1].value == '') {
+                document.getElementById('signup-error').style.display = 'block'
+            }
             const response = await fetch('https://allwell-test-app.onrender.com/user/', {
                 method: "POST",
                 mode: "cors",
