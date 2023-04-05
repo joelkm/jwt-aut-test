@@ -18,7 +18,6 @@ module.exports = {
         const token = req.params.token;
 
         const stored = await model.getUserBy("_id", id);
-        console.log(stored);
         const userPassword = stored[0].password;
 
         jwt.verify(token, process.env.JWT_SECRET + userPassword, (err) => {
