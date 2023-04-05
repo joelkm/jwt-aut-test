@@ -11,7 +11,7 @@ switch (pathname) {
             e.preventDefault();
             let inputs = document.querySelectorAll('input')
             let response = await fetch('http://localhost:8000/user/login', {
-                method: "POST",
+                method: "PUT",
                 mode: "cors",
                 cache: "no-cache",
                 headers: {
@@ -23,9 +23,14 @@ switch (pathname) {
                 })
             })
             let data = await response.json();
-            const token = data.token;
-            window.sessionStorage.setItem("jwt", token);
-            window.location.href = `http://localhost:8000/app/${token}`
+            console.log(data);
+            if(data.error) {
+                document.getElementById('login-error').style.display = 'block';
+            } else {
+                const token = data.token;
+                await window.sessionStorage.setItem("jwt", token);
+                window.location.href = `http://localhost:8000/app/${token}`
+            }
         });
         break;
     case "/signup":

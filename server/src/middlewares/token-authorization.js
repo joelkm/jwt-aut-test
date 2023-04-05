@@ -3,9 +3,13 @@ const jwt = require('jsonwebtoken');
 const model = require('../user/model');
 
 module.exports = {
-    authorizeUser: (req, res, next) => {
+    authorizeUser: async (req, res, next) => {
         const token = req.params.token;
+        const email = req.body.email;
         
+        const stored = await model.getUserBy("email", email);
+        const loginTimestamp = stored[0].loginTimestamp;
+
         jwt.verify(token, process.env.JWT_SECRET, (err) => {
             if(err) {
                 next(new AuthorizationError('Invalid auhtentication token, please login'))

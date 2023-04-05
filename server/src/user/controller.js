@@ -36,8 +36,22 @@ module.exports = {
     },
     changePassword: async (req, res, next) => {
         try {
-            const email = req.body.email;
-            const result = service.sendResetLink(email)
+            const user = {
+                id: req.params.id,
+                password: req.body.password
+            }
+            let result = service.changePassword(user)
+            res.status(200).json({
+                status: result
+            })
+        } catch (error) {
+            next(error)
+        }
+    },
+    logout: async (req, res, next) => {
+        try {
+            const id = req.params.id
+            let result = service.invalidateAccess(id)
             res.status(200).json({
                 status: result
             })

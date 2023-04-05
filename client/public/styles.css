@@ -103,3 +103,7 @@ height: 65vh;
     display: none;
     padding: 30px;
 }
+.error-message {
+    color: red;
+    display: none;
+}
