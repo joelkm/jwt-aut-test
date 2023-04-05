@@ -74,9 +74,9 @@ GET
 
 It was the most painful part of the entire app. Even if you said it wasn't neccessary for evaluation, I wanted to do it properly and ended up doing a mess. It works though, but it doesn't follow any architectural convention or logic, it's just lots of HTML, CSS and JS. I gave up on templates because I though it would be more complex to work with, but I'm sure it would have been easier.
 
-redirect.html --> An empty page that gets loaded when the user requests the plain / route. If it detects the jwt in the sessionStorage in the browser, it automatically redirects the user to the app, if not it redirects them to the login page.
-app.html --> The app with the button. Only gets loaded after auth and has a logout that ends the session and toggles to a screen with a login redirect.
-login.html --> The log in page. It validates credentials and has redirects to the sign up page and reset password page. The form sends the login request to the server, and stores the token in the sessionStorage, then it redirects the user to the app.
-signup.html --> The sign up page. Validates emails already registered and ensures both inputs have proper values. On submit it sends the signup request to the server and toggles to a screen with a redirect to login.
-forgot-password.html --> The password reset page. It has a form that validates that the email exists and requests the reset link on submit. After submitting, it toggles to a confirmation screen (You can also find the link there).
-change-password.html --> The redirect from the reset link. It validates that password and confirmation are the same value and triggers the update on the server. It the toggles to a redirect to log in.
+- redirect.html --> An empty page that gets loaded when the user requests the plain / route. If it detects the jwt in the sessionStorage in the browser, it automatically redirects the user to the app, if not it redirects them to the login page.
+- app.html --> The app with the button. Only gets loaded after auth and has a logout that ends the session and toggles to a screen with a login redirect.
+- login.html --> The log in page. It validates credentials and has redirects to the sign up page and reset password page. The form sends the login request to the server, and stores the token in the sessionStorage, then it redirects the user to the app.
+- signup.html --> The sign up page. Validates emails already registered and ensures both inputs have proper values. On submit it sends the signup request to the server and toggles to a screen with a redirect to login.
+- forgot-password.html --> The password reset page. It has a form that validates that the email exists and requests the reset link on submit. After submitting, it toggles to a confirmation screen (You can also find the link there).
+- change-password.html --> The redirect from the reset link. It validates that password and confirmation are the same value and triggers the update on the server. It the toggles to a redirect to log in.
