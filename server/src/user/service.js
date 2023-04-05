@@ -39,7 +39,7 @@ module.exports = {
 
         const token = jwt.sign({email: email, id: stored._id}, process.env.JWT_SECRET + stored.password, {expiresIn: '15m'});
 
-        const resetLink = `http://allwell-test-app.onrender.com/password-reset/${stored._id}/${token}`
+        const resetLink = `https://allwell-test-app.onrender.com/password-reset/${stored._id}/${token}`
         /*
         const transporter = nodemailer.createTransport({
             host: "smtp-mail.outlook.com", // hostname
