@@ -7,9 +7,14 @@ const publicPath = path.join(__dirname, "..", "..", "..", "client", "public");
 
 router.use(express.static(publicPath))
 
-router.get("/", authorizeUser ,(req, res) => {
+router.get("/" ,(req, res) => {
+    res.sendFile(path.join(publicPath, "redirect.html"));
+});
+
+router.get("/app/:token", /*authorizeUser ,*/(req, res) => {
     res.sendFile(path.join(publicPath, "app.html"));
 });
+
 
 router.get("/login", (req, res) => {
     res.sendFile(path.join(publicPath, "log-in.html"));
@@ -19,14 +24,11 @@ router.get("/signup", (req, res) => {
     res.sendFile(path.join(publicPath, "sign-up.html"));
 });
 
-//SIGN UP SUCCESS
-//router.get("/")
-
-router.get("/reset-password", (req, res) => {
-    res.sendFile(path.join(publicPath, "reset-password.html"));
+router.get("/password-reset", (req, res) => {
+    res.sendFile(path.join(publicPath, "forgot-password.html"));
 });
 
-router.get("/reset-password/:id/:token", (req, res) => {
+router.get("/password-reset/:id/:token", (req, res) => {
     res.sendFile(path.join(publicPath, "change-password.html"));
 });
 

@@ -8,7 +8,12 @@
 </head>
 <body>
     <script>
-        window.location.href = 'http://localhost:8000/login';
+        const authToken = window.sessionStorage.jwt;
+        if (authToken) {
+            window.location.href = `http://localhost:8000/app/${authToken}`
+        } else {
+            window.location.href = 'http://localhost:8000/login';
+        }
     </script>
 </body>
 </html>

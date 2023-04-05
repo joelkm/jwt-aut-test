@@ -16,8 +16,8 @@ module.exports = {
         try {
             const user = req.body;
             const token = await service.giveAccess(user);
-            res.status(200).json({
-                token: token
+            res.status(301).json({
+                token: token,
             })
         } catch (error) {
             next(error);

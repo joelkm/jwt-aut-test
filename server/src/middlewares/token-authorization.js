@@ -4,11 +4,12 @@ const path = require('path')
 
 module.exports = {
     authorizeUser: (req, res, next) => {
-        const authHeader = req.headers['authorization'];
-        const token = authHeader && authHeader.split(' ')[1];
-
+        const token = req.params.token;
+        
         jwt.verify(token, process.env.JWT_SECRET, (err) => {
-            if(err) res.sendFile(path.join(__dirname, "..", "..", "..", "client", "public", "redirect.html"));
+            if(err) {
+                next(new AuthorizationError('Invalid auhtentication token, please login'))
+            }
             next();
         })
     }

@@ -6,7 +6,6 @@ const { BadRequestError } = require('../config/app-error');
 module.exports = {
     register: async (user) => {
         user.password = await bcrypt.hash(user.password, 10);
-        console.log(user);
         user = await model.new(user);
         if(!user) {
             throw new BadRequestError('User not created');
