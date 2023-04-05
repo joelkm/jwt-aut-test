@@ -40,11 +40,11 @@ module.exports = {
         const token = jwt.sign({email: email, id: stored._id}, process.env.JWT_SECRET + stored.password, {expiresIn: '15m'});
 
         const resetLink = `https://allwell-test-app.onrender.com/password-reset/${stored._id}/${token}`
-        /*
+
         const transporter = nodemailer.createTransport({
-            host: "smtp-mail.outlook.com", // hostname
-            secureConnection: false, // TLS requires secureConnection to be false
-            port: 587, // port for secure SMTP
+            host: "smtp-mail.outlook.com", 
+            secureConnection: false,
+            port: 587, 
             auth: {
               user: process.env.OUTLOOK_USER,
               pass: process.env.OUTLOOK_PASSWORD
@@ -64,7 +64,7 @@ module.exports = {
         ${resetLink}`
         };
           
-        transporter.sendMail(mailOptions)*/
+        transporter.sendMail(mailOptions)
         console.log('Email sent');
         return resetLink
     },

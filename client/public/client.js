@@ -53,10 +53,10 @@ switch (pathname) {
                     email: inputs[0].value,
                     password: inputs[1].value
                 })
-            })
-            const data = await response.json();
-            signup.style.display = 'none';
-            document.getElementById('signup-success').style.display ='flex'
+                })
+                const data = await response.json();
+                signup.style.display = 'none';
+                document.getElementById('signup-success').style.display ='flex'
             }
         });
         break;
