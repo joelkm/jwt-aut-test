@@ -1,6 +1,4 @@
-# Test app for All Well
-
-Hi 👋, I hope this repo finds you well. I'm Joel Kassim and this is the code repo for your requested test app.
+# JWT Auth test
 
 For deployment, I've hosted the entire application in Render, here's the link:
 
